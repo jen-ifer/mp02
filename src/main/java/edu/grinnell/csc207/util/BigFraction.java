@@ -95,26 +95,26 @@ public class BigFraction {
     return this.num.doubleValue() / this.denom.doubleValue();
   } // doubleValue()
 
-  /**
-   * Add another faction to this fraction.
-   *
-   * @param addend The fraction to add.
-   *
-   * @return the result of the addition.
-   */
-  public BigFraction add(BigFraction addend) {
-    BigInteger resultNumerator;
-    BigInteger resultDenominator;
+  // /**
+  //  * Add another faction to this fraction.
+  //  *
+  //  * @param addend The fraction to add.
+  //  *
+  //  * @return the result of the addition.
+  //  */
+  // public BigFraction add(BigFraction addend) {
+  //   BigInteger resultNumerator;
+  //   BigInteger resultDenominator;
 
-    // The denominator of the result is the product of this object's
-    // denominator and addend's denominator
-    resultDenominator = this.denom.multiply(addend.denom);
-    // The numerator is more complicated
-    resultNumerator = (this.num.multiply(addend.denom)).add(addend.num.multiply(this.denom));
+  //   // The denominator of the result is the product of this object's
+  //   // denominator and addend's denominator
+  //   resultDenominator = this.denom.multiply(addend.denom);
+  //   // The numerator is more complicated
+  //   resultNumerator = (this.num.multiply(addend.denom)).add(addend.num.multiply(this.denom));
 
-    // Return the computed value
-    return new BigFraction(resultNumerator, resultDenominator);
-  } // add(BigFraction)
+  //   // Return the computed value
+  //   return new BigFraction(resultNumerator, resultDenominator);
+  // } // add(BigFraction)
 
   /**
    * Get the denominator of this fraction.
@@ -145,7 +145,7 @@ public class BigFraction {
       return "0";
     } // if it's zero
 
-    // Lump together the string represention of the numerator,
+    // Lump together the string representation of the numerator,
     // a slash, and the string representation of the denominator
     // return this.num.toString().concat("/").concat(this.denom.toString());
     return this.num + "/" + this.denom;
@@ -183,6 +183,23 @@ public class BigFraction {
     return new BigFraction(endTop,bottomF);
   }
 
+  public BigFraction add(BigFraction other) {
+    BigInteger topF = this.num;
+    BigInteger bottomF = this.denom;
+    BigInteger topO = other.num;
+    BigInteger bottomO = other.denom;
+
+    if(!bottomF.equals(bottomO)) {
+      BigInteger commonDenom = bottomF.multiply(bottomO).divide(bottomF.gcd(bottomO));
+      topF = topF.multiply((commonDenom.divide(bottomF)));
+      topO = topO.multiply((commonDenom.divide(bottomO)));
+      bottomF = commonDenom;
+    }
+    BigInteger endTop = topF.add(topO);
+    return new BigFraction(endTop,bottomF);
+
+  }
+
   public BigFraction divide(BigFraction other) {
     BigInteger topF = this.num;
     BigInteger bottomF = this.denom;
@@ -194,11 +211,5 @@ public class BigFraction {
     return new BigFraction(finalTop,finalBot);
 
   }
-
-
-
-
-
-
 
 } // class BigFraction
