@@ -95,26 +95,6 @@ public class BigFraction {
     return this.num.doubleValue() / this.denom.doubleValue();
   } // doubleValue()
 
-  // /**
-  //  * Add another faction to this fraction.
-  //  *
-  //  * @param addend The fraction to add.
-  //  *
-  //  * @return the result of the addition.
-  //  */
-  // public BigFraction add(BigFraction addend) {
-  //   BigInteger resultNumerator;
-  //   BigInteger resultDenominator;
-
-  //   // The denominator of the result is the product of this object's
-  //   // denominator and addend's denominator
-  //   resultDenominator = this.denom.multiply(addend.denom);
-  //   // The numerator is more complicated
-  //   resultNumerator = (this.num.multiply(addend.denom)).add(addend.num.multiply(this.denom));
-
-  //   // Return the computed value
-  //   return new BigFraction(resultNumerator, resultDenominator);
-  // } // add(BigFraction)
 
   /**
    * Get the denominator of this fraction.
@@ -212,4 +192,11 @@ public class BigFraction {
 
   }
 
+  public BigFraction simplify(BigInteger firstNum, BigInteger secondNum) {
+    BigInteger divisor = firstNum.gcd(secondNum);
+    firstNum = firstNum.divide(divisor);
+    secondNum = secondNum.divide(divisor);
+    return new BigFraction(firstNum,secondNum);
+
+  }
 } // class BigFraction
