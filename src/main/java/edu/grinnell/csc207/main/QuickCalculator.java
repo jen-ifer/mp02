@@ -2,16 +2,13 @@ package edu.grinnell.csc207.main;
 
 import java.io.PrintWriter;
 import edu.grinnell.csc207.util.BFCalculator;
-import edu.grinnell.csc207.util.BFRegisterSet;
 import edu.grinnell.csc207.util.BigFraction;
 
 
 /**
  * This is the quick calculator main java file.
- * 
  * @author Jenifer Silva
  * @author Samuel A. Rebelsky
- * 
  */
 public class QuickCalculator {
   public static void main(String[] args) {
