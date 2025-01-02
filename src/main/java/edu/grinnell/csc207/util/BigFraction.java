@@ -203,7 +203,6 @@ public class BigFraction {
     } //if
     BigInteger endTop = topF.add(topO);
     return new BigFraction(endTop, bottomF);
-
   } //add
 
   /**

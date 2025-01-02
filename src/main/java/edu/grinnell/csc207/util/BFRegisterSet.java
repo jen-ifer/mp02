@@ -30,7 +30,7 @@ public class BFRegisterSet {
    * @return the value in that register
    */
   public BigFraction get(char register) {
-    BigFraction valueWanted = new BigFraction(BigInteger.valueOf(0), BigInteger.valueOf(1));;
+    BigFraction valueWanted = new BigFraction(BigInteger.valueOf(0), BigInteger.valueOf(1));
     for (char ch = 'a'; ch <= 'z'; ch++) {
       if (ch == register) {
         valueWanted = array[ch - 'a'];

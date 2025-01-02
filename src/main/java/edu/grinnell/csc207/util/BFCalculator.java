@@ -3,8 +3,7 @@ package edu.grinnell.csc207.util;
 import java.math.BigInteger;
 
 /**
- * Where we do computation using our previous value of calculator
- * 
+ * Where we do computation using our previous value of calculator.
  * @author Jenifer Silva
  */
 public class BFCalculator {
