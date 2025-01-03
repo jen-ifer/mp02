@@ -51,7 +51,7 @@
               <archive>
                 <manifest>
                   <addClasspath>true</addClasspath>
-                  <mainClass>edu.grinnell.csc207.QuickCalculator</mainClass>
+                  <mainClass>edu.grinnell.csc207.InteractiveCalculator</mainClass>
                 </manifest>
               </archive>
             </configuration>

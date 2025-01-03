@@ -1,76 +1,79 @@
-// package edu.grinnell.csc207.main;
+package edu.grinnell.csc207.main;
 
-// import java.io.PrintWriter;
-// import javax.imageio.plugins.tiff.BaselineTIFFTagSet;
-// import edu.grinnell.csc207.util.BFCalculator;
-// import edu.grinnell.csc207.util.BFRegisterSet;
-// import edu.grinnell.csc207.util.BigFraction;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import edu.grinnell.csc207.util.BFCalculator;
+import edu.grinnell.csc207.util.BFRegisterSet;
+import edu.grinnell.csc207.util.BigFraction;
 
-// /**
-//  * Main method that will take expressions from the command line and print out results
-//  *
-//  * @author Samuel A. Rebelsky
-//  * @author Jenifer Silva
-//  */
-// public class InteractiveCalculator {
-//   public static void main(String[] args) {
+/**
+ * Main method that will take expressions from the command line and print out results
+ *
+ * @author Samuel A. Rebelsky
+ * @author Jenifer Silva
+ */
+public class InteractiveCalculator {
+  public static void main(String[] args) {
+    PrintWriter pen = new PrintWriter(System.out, true);
+    Scanner eyes = new Scanner(System.in);
+    BFRegisterSet registerSet = new BFRegisterSet();
+    BFCalculator calculator = new BFCalculator();
 
-//     PrintWriter pen = new PrintWriter(System.out, true);
-//     BFRegisterSet reg = new BFRegisterSet();
-//     BFCalculator calculator = new BFCalculator();
+    while (true) {
+      pen.print("> ");
+      pen.flush();
+      String stuff = eyes.nextLine();
+      if(stuff.equals("QUIT")) {
+        break;
+      }
 
-//     boolean STORE = false;
-//     boolean add = false;
-//     boolean subtract = false;
-//     boolean divide = false;
-//     boolean multiply = false;
-//     BigFraction firstNum;
-//     BigFraction secondNum;
+      if (stuff.startsWith("STORE")) {
+        char letter2Store = stuff.charAt(6);
+        if (letter2Store >= 'a' && letter2Store <= 'z') {
+          registerSet.store(letter2Store, calculator.get());
+          pen.println("STORED");
+        } else {
+          pen.println("*** ERROR [Invalid expression] ***");
+        }
+      } else {
+        String[] equation = stuff.split(" ");
+        if (equation.length == 3) {
+          BigFraction firstNum;
+          if (equation[0].length() != 1) {
+            firstNum = new BigFraction(equation[0]);
+          } else {
+            firstNum = registerSet.get(equation[0].charAt(0));
+          }
 
-//     for (int i = 0; i < args.length; i++) {
-//       if (args[0].equals("STORE")) {
-//         char register = args[1].charAt(6);
-//         reg.store(register, calculator.get());
-        
-//       } else if (args[i].equals("+")) {
-//         add = true;
-//         calculator.add(firstNum);
+          BigFraction secondNum;
+          if (equation[2].length() != 1) {
+            secondNum = new BigFraction(equation[2]);
+          } else {
+            secondNum = registerSet.get(equation[2].charAt(0));
+            pen.println(secondNum);
+          }
 
-//       } else if (args[i].equals("-")) {
-//         subtract = true;
-//       } else if (args[i].equals("/")) {
-//         divide = true;
-//       } else if (args[i].equals("*")) {
-//         multiply = true;
-//       } else {
-//         return;
-//       }
-//     } // if
+          String operation = equation[1];
 
+          calculator.clear();
+          calculator.add(firstNum);
 
+          if (operation.equals("+")) {
+            calculator.add(secondNum);
+          } else if (operation.equals("-")) {
+            calculator.subtract(secondNum);
+          } else if (operation.equals("*")) {
+            calculator.multiply(secondNum);
+          } else {
+            calculator.divide(secondNum);
+          } // if
+          pen.println(calculator.get());
 
-//     if (STORE) {
-      
-//     } // if
-
-//     if (caesar && decode) {
-//       pen.println(CipherUtils.caesarDecrypt(word, caesarKey));
-//     } // if
-
-//     if (vigenere && encode) {
-//       String result;
-//       result = CipherUtils.vigenereEncrypt(word, key);
-//       if (result != null && !result.isEmpty()) {
-//         pen.println(result);
-//       } // if
-//     } // if
-
-//     if (vigenere && decode) {
-//       String result;
-//       result = CipherUtils.vigenereDecrypt(word, key);
-//       if (result != null && !result.isEmpty()) {
-//         pen.println(result);
-//       } // if
-//     } // if
-//   } // main
-// } // Cipher
+          } else {
+          pen.println("*** Error [Invalid Expression] ***");
+          }
+        }
+      }
+      eyes.close();
+    }
+  }
