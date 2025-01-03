@@ -32,14 +32,14 @@ public class QuickCalculator {
       } else {
         String[] equation = args[i].split(" ");
         BigFraction firstNum;
-        if (equation[0].length() != 1) {
+        if (equation[0].length() != 1 || !(Character.isLetter(equation[0].charAt(0)))) {
           firstNum = new BigFraction(equation[0]);
         } else {
           firstNum = registerSet.get(equation[0].charAt(0));
         } // else
 
         BigFraction secondNum;
-        if (equation[2].length() != 1) {
+        if (equation[2].length() != 1 || !(Character.isLetter(equation[2].charAt(0)))) {
           secondNum = new BigFraction(equation[2]);
         } else {
           secondNum = registerSet.get(equation[2].charAt(0));

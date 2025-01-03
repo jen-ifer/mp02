@@ -53,7 +53,6 @@ public class InteractiveCalculator {
             secondNum = new BigFraction(equation[2]);
           } else {
             secondNum = registerSet.get(equation[2].charAt(0));
-            pen.println(secondNum);
           } // else
 
           String operation = equation[1];
