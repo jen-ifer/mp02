@@ -59,11 +59,10 @@ public class QuickCalculator {
           calculator.multiply(secondNum);
         } else {
           calculator.divide(secondNum);
-
-        } // if
+        } // else
         pen.println(firstNum + operation + secondNum + "->" + calculator.get());
       } // else
     } // for
     pen.close();
   } // main
-} // quickcalculator
+} // class quickcalculator

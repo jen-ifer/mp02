@@ -7,12 +7,15 @@ import edu.grinnell.csc207.util.BFRegisterSet;
 import edu.grinnell.csc207.util.BigFraction;
 
 /**
- * Main method that will take expressions from the command line and print out results
+ * Main method that will take expressions from the command line and print out results.
  *
  * @author Samuel A. Rebelsky
  * @author Jenifer Silva
  */
 public class InteractiveCalculator {
+  /**
+   * @param args
+   */
   public static void main(String[] args) {
     PrintWriter pen = new PrintWriter(System.out, true);
     Scanner eyes = new Scanner(System.in);
@@ -23,9 +26,9 @@ public class InteractiveCalculator {
       pen.print("> ");
       pen.flush();
       String stuff = eyes.nextLine();
-      if(stuff.equals("QUIT")) {
+      if (stuff.equals("QUIT")) {
         break;
-      }
+      } // if
 
       if (stuff.startsWith("STORE")) {
         char letter2Store = stuff.charAt(6);
@@ -34,7 +37,7 @@ public class InteractiveCalculator {
           pen.println("STORED");
         } else {
           pen.println("*** ERROR [Invalid expression] ***");
-        }
+        } // else
       } else {
         String[] equation = stuff.split(" ");
         if (equation.length == 3) {
@@ -43,7 +46,7 @@ public class InteractiveCalculator {
             firstNum = new BigFraction(equation[0]);
           } else {
             firstNum = registerSet.get(equation[0].charAt(0));
-          }
+          } // else
 
           BigFraction secondNum;
           if (equation[2].length() != 1) {
@@ -51,7 +54,7 @@ public class InteractiveCalculator {
           } else {
             secondNum = registerSet.get(equation[2].charAt(0));
             pen.println(secondNum);
-          }
+          } // else
 
           String operation = equation[1];
 
@@ -69,11 +72,11 @@ public class InteractiveCalculator {
           } // if
           pen.println(calculator.get());
 
-          } else {
+        } else {
           pen.println("*** Error [Invalid Expression] ***");
-          }
-        }
-      }
-      eyes.close();
-    }
-  }
+        } // else
+      } // else
+    } // while
+    eyes.close();
+  } // main
+} // class InteractiveCalculator

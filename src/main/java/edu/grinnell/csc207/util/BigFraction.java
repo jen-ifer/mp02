@@ -1,7 +1,7 @@
 package edu.grinnell.csc207.util;
 
 import java.math.BigInteger;
-import java.util.function.BiFunction;
+
 
 /**
  * A simple implementation of arbitrary-precision Fractions.
@@ -90,7 +90,7 @@ public class BigFraction {
       BigInteger divisor = this.num.gcd(this.denom);
       this.num = this.num.divide(divisor);
       this.denom = this.denom.divide(divisor);
-    } //else
+    } // else
   } // BigFraction
 
   // +---------+------------------------------------------------------
@@ -131,9 +131,7 @@ public class BigFraction {
     // Special case: It's zero
     if (numerator().equals(BigInteger.ZERO)) {
       return "0";
-    } // if it's zero
-
-    else if (denominator().equals(BigInteger.ONE)) {
+    } else if (denominator().equals(BigInteger.ONE)) {
       return numerator().toString();
     } // elseif
     // Lump together the string representation of the numerator,
@@ -142,7 +140,7 @@ public class BigFraction {
     return numerator().toString() + "/" + denominator().toString();
   } // toString()
 
-  
+
   /**
    * @param other fraction
    * @return the new result
@@ -151,10 +149,10 @@ public class BigFraction {
     BigInteger top = this.num.multiply(other.num);
     BigInteger bottom = this.denom.multiply(other.denom);
     return new BigFraction(top, bottom);
-  } //multiply
+  } // multiply
 
   /**
-   * @return fractional value as a BigFraction 
+   * @return fractional value as a BigFraction
    */
   public BigFraction fractional() {
     BigInteger top = this.num;
@@ -162,7 +160,7 @@ public class BigFraction {
     BigInteger holder = (top.mod(bottom));
     BigInteger newTop = (bottom.subtract(holder));
     return new BigFraction(newTop, bottom);
-  } //fractional
+  } // fractional
 
 
   /**
@@ -180,7 +178,7 @@ public class BigFraction {
       topF = topF.multiply((commonDenom.divide(bottomF)));
       topO = topO.multiply((commonDenom.divide(bottomO)));
       bottomF = commonDenom;
-    } //if
+    } // if
     BigInteger endTop = topF.subtract(topO);
     return new BigFraction(endTop, bottomF);
   } // subtract
@@ -200,10 +198,10 @@ public class BigFraction {
       topF = topF.multiply((commonDenom.divide(bottomF)));
       topO = topO.multiply((commonDenom.divide(bottomO)));
       bottomF = commonDenom;
-    } //if
+    } // if
     BigInteger endTop = topF.add(topO);
     return new BigFraction(endTop, bottomF);
-  } //add
+  } // add
 
   /**
    * @param other fraction
@@ -219,6 +217,6 @@ public class BigFraction {
     BigInteger finalBot = bottomF.multiply(reciprocalBottomO);
     return new BigFraction(finalTop, finalBot);
 
-  } //divide
+  } // divide
 
 } // class BigFraction

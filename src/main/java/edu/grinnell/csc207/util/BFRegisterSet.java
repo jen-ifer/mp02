@@ -3,13 +3,16 @@ package edu.grinnell.csc207.util;
 import java.math.BigInteger;
 
 /**
- * A set of registers corresponding a-z you can store a value or get a value
+ * A set of registers corresponding a-z you can store a value or get a value.
  * @author Samuel A. Rebelsky
  * @author Jenifer Silva
  */
 public class BFRegisterSet {
 
 
+  /**
+   *
+   */
   BigFraction[] array = new BigFraction[26];
 
   /**
@@ -20,10 +23,10 @@ public class BFRegisterSet {
     for (char ch = 'a'; ch <= 'z'; ch++) {
       if (ch == register) {
         array[ch - 'a'] = val;
-      } //if
+      } // if
     } // for
 
-  } //store
+  } // store
 
   /**
    * @param register the 'letter' we would like to retrieve
@@ -34,9 +37,9 @@ public class BFRegisterSet {
     for (char ch = 'a'; ch <= 'z'; ch++) {
       if (ch == register) {
         valueWanted = array[ch - 'a'];
-      } //if
-    } //for
+      } // if
+    } // for
     return valueWanted;
-  } //get
+  } // get
 
 } // class BFRegister
